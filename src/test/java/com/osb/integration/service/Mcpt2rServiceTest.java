@@ -82,7 +82,7 @@ class Mcpt2rServiceTest {
         // Assert
         assertNotNull(result);
         verify(flowRegistry, times(1)).getFlowSpec("Siebel");
-        verify(genericHelper, times(1)).processFlow(any(), eq(headers), eq(payload));
+        verify(genericHelper, times(1)).processFlow(eq(flowSpec), eq(headers), eq(payload));
     }
     
     @Test
@@ -102,7 +102,7 @@ class Mcpt2rServiceTest {
         // Assert
         assertNotNull(result);
         verify(flowRegistry, times(1)).getFlowSpec("Portal");
-        verify(genericHelper, times(1)).processFlow(any(), eq(headers), eq(payload));
+        verify(genericHelper, times(1)).processFlow(eq(flowSpec), eq(headers), eq(payload));
     }
     
     @Test
@@ -122,7 +122,7 @@ class Mcpt2rServiceTest {
         // Assert
         assertNotNull(result);
         verify(flowRegistry, times(1)).getFlowSpec("Flow");
-        verify(genericHelper, times(1)).processFlow(any(), eq(headers), eq(payload));
+        verify(genericHelper, times(1)).processFlow(eq(flowSpec), eq(headers), eq(payload));
     }
     
     @Test
@@ -142,7 +142,7 @@ class Mcpt2rServiceTest {
         // Assert
         assertNotNull(result);
         verify(flowRegistry, times(1)).getFlowSpec("NEO");
-        verify(genericHelper, times(1)).processFlow(any(), eq(headers), eq(payload));
+        verify(genericHelper, times(1)).processFlow(eq(flowSpec), eq(headers), eq(payload));
     }
     
     @Test
@@ -162,7 +162,7 @@ class Mcpt2rServiceTest {
         // Assert
         assertNotNull(result);
         verify(flowRegistry, times(1)).getFlowSpec("Sync");
-        verify(genericHelper, times(1)).processFlow(any(), eq(headers), eq(payload));
+        verify(genericHelper, times(1)).processFlow(eq(flowSpec), eq(headers), eq(payload));
     }
     
     @Test
