@@ -1,0 +1,77 @@
+flows:
+  - queueName: "B2B"
+    description: "B2B Integration Flow"
+    requiredHeaders:
+      - "x-queue-name"
+      - "x-correlation-id"
+      - "x-message-type"
+    schemaValidationEnabled: true
+    schemaPath: "/schemas/b2b-schema.xsd"
+    transformationEnabled: true
+    transformationPath: "/xquery/b2b-transform.xq"
+    adapterEndpoint: "http://adapter-service/b2b/process"
+    properties: "flow=B2B;priority=high"
+
+  - queueName: "Siebel"
+    description: "Siebel CRM Integration Flow"
+    requiredHeaders:
+      - "x-queue-name"
+      - "x-correlation-id"
+      - "x-session-id"
+    schemaValidationEnabled: true
+    schemaPath: "/schemas/siebel-schema.xsd"
+    transformationEnabled: true
+    transformationPath: "/xquery/siebel-transform.xq"
+    adapterEndpoint: "http://adapter-service/siebel/process"
+    properties: "flow=Siebel;crm=true"
+
+  - queueName: "Portal"
+    description: "Portal Integration Flow"
+    requiredHeaders:
+      - "x-queue-name"
+      - "x-correlation-id"
+      - "x-user-id"
+    schemaValidationEnabled: false
+    schemaPath: ""
+    transformationEnabled: true
+    transformationPath: "/xquery/portal-transform.xq"
+    adapterEndpoint: "http://adapter-service/portal/process"
+    properties: "flow=Portal;web=true"
+
+  - queueName: "Flow"
+    description: "Generic Flow Integration"
+    requiredHeaders:
+      - "x-queue-name"
+      - "x-correlation-id"
+    schemaValidationEnabled: true
+    schemaPath: "/schemas/flow-schema.xsd"
+    transformationEnabled: false
+    transformationPath: ""
+    adapterEndpoint: "http://adapter-service/flow/process"
+    properties: "flow=Generic"
+
+  - queueName: "NEO"
+    description: "NEO Platform Integration Flow"
+    requiredHeaders:
+      - "x-queue-name"
+      - "x-correlation-id"
+      - "x-platform-id"
+    schemaValidationEnabled: true
+    schemaPath: "/schemas/neo-schema.xsd"
+    transformationEnabled: true
+    transformationPath: "/xquery/neo-transform.xq"
+    adapterEndpoint: "http://adapter-service/neo/process"
+    properties: "flow=NEO;platform=cloud"
+
+  - queueName: "Sync"
+    description: "Synchronous Integration Flow"
+    requiredHeaders:
+      - "x-queue-name"
+      - "x-correlation-id"
+      - "x-sync-mode"
+    schemaValidationEnabled: false
+    schemaPath: ""
+    transformationEnabled: false
+    transformationPath: ""
+    adapterEndpoint: "http://adapter-service/sync/process"
+    properties: "flow=Sync;mode=synchronous"
