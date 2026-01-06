@@ -27,6 +27,40 @@ public class OsbPipelineController {
     }
 
     /**
+     * Sanitize error message to prevent information disclosure.
+     * Only exposes safe, controlled error information using a whitelist approach.
+     */
+    private String sanitizeValidationError(String errorMessage) {
+        if (errorMessage == null) {
+            return "Invalid request parameters";
+        }
+        
+        // Whitelist of allowed header names
+        String[] allowedHeaders = {"msg-id", "correlation-id", "source-system", 
+                                   "siebel-operation", "user-id", "flow-type", 
+                                   "neo-transaction-id", "sync-mode"};
+        
+        // Handle missing header errors - only expose if header is in whitelist
+        if (errorMessage.startsWith("Missing required header: ")) {
+            String headerName = errorMessage.substring("Missing required header: ".length());
+            for (String allowedHeader : allowedHeaders) {
+                if (allowedHeader.equals(headerName)) {
+                    return "Missing required header: " + allowedHeader;
+                }
+            }
+            return "Missing required header";
+        }
+        
+        // Handle invalid queue name
+        if (errorMessage.contains("No flow configuration found")) {
+            return "Invalid or unsupported queue name";
+        }
+        
+        // Default safe message
+        return "Invalid request parameters";
+    }
+
+    /**
      * Process a message through the OSB pipeline.
      * 
      * @param queueName Queue name header
@@ -47,12 +81,14 @@ public class OsbPipelineController {
             
         } catch (IllegalArgumentException e) {
             logger.error("Validation error: {}", e.getMessage());
-            return ResponseEntity.badRequest().body("Validation Error: " + e.getMessage());
+            String safeMessage = sanitizeValidationError(e.getMessage());
+            return ResponseEntity.badRequest().body("Validation Error: " + safeMessage);
             
         } catch (Exception e) {
             logger.error("Processing error: {}", e.getMessage(), e);
+            // Don't expose internal error details
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Processing Error: " + e.getMessage());
+                    .body("Processing Error: Unable to process message");
         }
     }
 
