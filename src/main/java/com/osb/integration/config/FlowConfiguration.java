@@ -13,27 +13,27 @@ import java.util.Map;
  * Configuration class for loading OSB flow specifications from YAML.
  */
 @Component
-@ConfigurationProperties
+@ConfigurationProperties(prefix = "flows")
 public class FlowConfiguration {
     
-    private Map<String, FlowSpec> flows = new HashMap<>();
+    private Map<String, FlowSpec> specs = new HashMap<>();
 
-    public Map<String, FlowSpec> getFlows() {
-        return flows;
+    public Map<String, FlowSpec> getSpecs() {
+        return specs;
     }
 
-    public void setFlows(Map<String, FlowSpec> flows) {
-        this.flows = flows;
+    public void setSpecs(Map<String, FlowSpec> specs) {
+        this.specs = specs;
     }
 
     /**
      * Get FlowSpec by queue name
      */
     public FlowSpec getFlowSpecByQueueName(String queueName) {
-        if (flows == null || flows.isEmpty()) {
+        if (specs == null || specs.isEmpty()) {
             return null;
         }
-        return flows.values().stream()
+        return specs.values().stream()
                 .filter(spec -> spec != null && queueName.equals(spec.getQueueName()))
                 .findFirst()
                 .orElse(null);
@@ -43,9 +43,9 @@ public class FlowConfiguration {
      * Get FlowSpec by flow name
      */
     public FlowSpec getFlowSpecByFlowName(String flowName) {
-        if (flows == null) {
+        if (specs == null) {
             return null;
         }
-        return flows.get(flowName);
+        return specs.get(flowName);
     }
 }

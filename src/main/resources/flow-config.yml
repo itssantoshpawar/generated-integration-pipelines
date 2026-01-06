@@ -1,72 +1,73 @@
 flows:
-  B2B:
-    flowName: B2B
-    queueName: Q.B2B.IN
-    requiredHeaders:
-      - msg-id
-      - correlation-id
-      - source-system
-    xqueryTransformation: /xquery/b2b-transform.xq
-    adapterEndpoint: http://adapter-service/b2b
-    schemaValidationEnabled: true
-    schemaPath: /schemas/b2b-schema.xsd
-    
-  Siebel:
-    flowName: Siebel
-    queueName: Q.SIEBEL.IN
-    requiredHeaders:
-      - msg-id
-      - correlation-id
-      - siebel-operation
-    xqueryTransformation: /xquery/siebel-transform.xq
-    adapterEndpoint: http://adapter-service/siebel
-    schemaValidationEnabled: true
-    schemaPath: /schemas/siebel-schema.xsd
-    
-  Portal:
-    flowName: Portal
-    queueName: Q.PORTAL.IN
-    requiredHeaders:
-      - msg-id
-      - correlation-id
-      - user-id
-    xqueryTransformation: /xquery/portal-transform.xq
-    adapterEndpoint: http://adapter-service/portal
-    schemaValidationEnabled: true
-    schemaPath: /schemas/portal-schema.xsd
-    
-  Flow:
-    flowName: Flow
-    queueName: Q.FLOW.IN
-    requiredHeaders:
-      - msg-id
-      - correlation-id
-      - flow-type
-    xqueryTransformation: /xquery/flow-transform.xq
-    adapterEndpoint: http://adapter-service/flow
-    schemaValidationEnabled: true
-    schemaPath: /schemas/flow-schema.xsd
-    
-  NEO:
-    flowName: NEO
-    queueName: Q.NEO.IN
-    requiredHeaders:
-      - msg-id
-      - correlation-id
-      - neo-transaction-id
-    xqueryTransformation: /xquery/neo-transform.xq
-    adapterEndpoint: http://adapter-service/neo
-    schemaValidationEnabled: true
-    schemaPath: /schemas/neo-schema.xsd
-    
-  Sync:
-    flowName: Sync
-    queueName: Q.SYNC.IN
-    requiredHeaders:
-      - msg-id
-      - correlation-id
-      - sync-mode
-    xqueryTransformation: /xquery/sync-transform.xq
-    adapterEndpoint: http://adapter-service/sync
-    schemaValidationEnabled: false
-    schemaPath: /schemas/sync-schema.xsd
+  specs:
+    B2B:
+      flowName: B2B
+      queueName: Q.B2B.IN
+      requiredHeaders:
+        - msg-id
+        - correlation-id
+        - source-system
+      xqueryTransformation: /xquery/b2b-transform.xq
+      adapterEndpoint: http://adapter-service/b2b
+      schemaValidationEnabled: true
+      schemaPath: /schemas/b2b-schema.xsd
+      
+    Siebel:
+      flowName: Siebel
+      queueName: Q.SIEBEL.IN
+      requiredHeaders:
+        - msg-id
+        - correlation-id
+        - siebel-operation
+      xqueryTransformation: /xquery/siebel-transform.xq
+      adapterEndpoint: http://adapter-service/siebel
+      schemaValidationEnabled: true
+      schemaPath: /schemas/siebel-schema.xsd
+      
+    Portal:
+      flowName: Portal
+      queueName: Q.PORTAL.IN
+      requiredHeaders:
+        - msg-id
+        - correlation-id
+        - user-id
+      xqueryTransformation: /xquery/portal-transform.xq
+      adapterEndpoint: http://adapter-service/portal
+      schemaValidationEnabled: true
+      schemaPath: /schemas/portal-schema.xsd
+      
+    Flow:
+      flowName: Flow
+      queueName: Q.FLOW.IN
+      requiredHeaders:
+        - msg-id
+        - correlation-id
+        - flow-type
+      xqueryTransformation: /xquery/flow-transform.xq
+      adapterEndpoint: http://adapter-service/flow
+      schemaValidationEnabled: true
+      schemaPath: /schemas/flow-schema.xsd
+      
+    NEO:
+      flowName: NEO
+      queueName: Q.NEO.IN
+      requiredHeaders:
+        - msg-id
+        - correlation-id
+        - neo-transaction-id
+      xqueryTransformation: /xquery/neo-transform.xq
+      adapterEndpoint: http://adapter-service/neo
+      schemaValidationEnabled: true
+      schemaPath: /schemas/neo-schema.xsd
+      
+    Sync:
+      flowName: Sync
+      queueName: Q.SYNC.IN
+      requiredHeaders:
+        - msg-id
+        - correlation-id
+        - sync-mode
+      xqueryTransformation: /xquery/sync-transform.xq
+      adapterEndpoint: http://adapter-service/sync
+      schemaValidationEnabled: false
+      schemaPath: /schemas/sync-schema.xsd

@@ -22,7 +22,6 @@ public class OsbPipelineController {
 
     private final McpGenericHelper mcpGenericHelper;
 
-    @Autowired
     public OsbPipelineController(McpGenericHelper mcpGenericHelper) {
         this.mcpGenericHelper = mcpGenericHelper;
     }

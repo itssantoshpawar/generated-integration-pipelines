@@ -30,7 +30,6 @@ public class McpGenericHelper {
     private final FlowConfiguration flowConfiguration;
     private final RestTemplate restTemplate;
 
-    @Autowired
     public McpGenericHelper(FlowConfiguration flowConfiguration) {
         this.flowConfiguration = flowConfiguration;
         this.restTemplate = new RestTemplate();

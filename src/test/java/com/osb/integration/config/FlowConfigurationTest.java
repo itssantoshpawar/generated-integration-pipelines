@@ -18,17 +18,17 @@ class FlowConfigurationTest {
     void setUp() {
         flowConfiguration = new FlowConfiguration();
         
-        Map<String, FlowSpec> flows = new HashMap<>();
+        Map<String, FlowSpec> specs = new HashMap<>();
         
         FlowSpec b2bFlow = new FlowSpec("B2B", "Q.B2B.IN", Arrays.asList("msg-id", "correlation-id"));
         b2bFlow.setXqueryTransformation("/xquery/b2b.xq");
-        flows.put("B2B", b2bFlow);
+        specs.put("B2B", b2bFlow);
         
         FlowSpec siebelFlow = new FlowSpec("Siebel", "Q.SIEBEL.IN", Arrays.asList("msg-id", "correlation-id"));
         siebelFlow.setXqueryTransformation("/xquery/siebel.xq");
-        flows.put("Siebel", siebelFlow);
+        specs.put("Siebel", siebelFlow);
         
-        flowConfiguration.setFlows(flows);
+        flowConfiguration.setSpecs(specs);
     }
 
     @Test
@@ -65,11 +65,11 @@ class FlowConfigurationTest {
 
     @Test
     void testGetFlows() {
-        Map<String, FlowSpec> flows = flowConfiguration.getFlows();
+        Map<String, FlowSpec> specs = flowConfiguration.getSpecs();
         
-        assertNotNull(flows);
-        assertEquals(2, flows.size());
-        assertTrue(flows.containsKey("B2B"));
-        assertTrue(flows.containsKey("Siebel"));
+        assertNotNull(specs);
+        assertEquals(2, specs.size());
+        assertTrue(specs.containsKey("B2B"));
+        assertTrue(specs.containsKey("Siebel"));
     }
 }
